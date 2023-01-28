@@ -9,9 +9,9 @@
    
 
 1. Smart contract cho stake token của dự án sẽ gồm 3 contract
-  0x359F4ed0764F878a5BF71A615686fc277cD610C6
-  0x264bB08fb82ee8f3C996370369E2b63b143d264F
-  0xf60B965989d4FfE0cE929a66c2048013118a9eA7
+  - 0x359F4ed0764F878a5BF71A615686fc277cD610C6
+  - 0x264bB08fb82ee8f3C996370369E2b63b143d264F
+  - 0xf60B965989d4FfE0cE929a66c2048013118a9eA7
   Mỗi contract sẽ có apy và thời gian khóa khác nhau, một số biến và hàm cơ bản sẽ sử dụng như sau:
   - Biến:
     + totalStaked(int): tổng số token đang stake trong contract. 
