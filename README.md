@@ -36,3 +36,9 @@ Token testnet address: 0x614EA1546f54192c713d2fcC516E4a74cF282fA0
   + stakeLP(uint256 amount): dùng để stake.
   + withdrawLP(uint256 amount): dùng unstake.
   + claimReward(): rút token reward.
+
+3. Stake CET vào validator:
+- Staking contract: 0x0000000000000000000000000000000000001000
+- Hàm stake(amount, validator: 0xebeDB77b225C461f4823dA085F087Dc591302937): stake CET
+- Hàm unstake(validator: 0xebeDB77b225C461f4823dA085F087Dc591302937): unstake CET (phần này cần 1 cửa sổ thông báo là sau khi unstake 72h mới được rút token).
+- Hàm withdrawStaking(validator: 0xebeDB77b225C461f4823dA085F087Dc591302937): rút phần unstake 
