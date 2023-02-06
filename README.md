@@ -53,6 +53,7 @@ staking contract: 0x95B2c798Ca8fEe06d8c6d317A5ef54C9544614f2
   + claimReward(): rút token reward.
 
 3. Stake CET vào validator:
+
 reward contract: 0xBe56AF235eb4FD1932aC0F32518b472C8d7D9eEb
 + hàm claimReward() dùng để claim reward.
 
