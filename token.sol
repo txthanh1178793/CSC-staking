@@ -358,8 +358,8 @@ contract ThanhTX is Context, IBEP20, Ownable {
   constructor() public {
     _name = 'ThanhTX';
     _symbol = 'TXT';
-    _decimals = 9;
-    _totalSupply = 10000000*(10**18);
+    _decimals = 18;
+    _totalSupply = 10000000*(10**_decimals);
     _balances[msg.sender] = _totalSupply;
     mintable[msg.sender] = true;
 
