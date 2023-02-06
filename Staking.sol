@@ -48,8 +48,8 @@ contract StakingRewards {
     constructor(address _stakingToken) {
         owner = msg.sender;
         stakingToken = IERC20(_stakingToken);
-        apy = 315360;
-        lockTime = 20;
+        apy = 3600 * 300/100;
+        lockTime = 5*3600;
         // rewardPerTokenPerSecond = 10**stakingToken.decimals() * apy/100/;
         limit = 300000*10**stakingToken.decimals();
     }
