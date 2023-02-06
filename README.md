@@ -41,6 +41,7 @@ new: 0xc52111412C12bC3aE61A68ff8f1312A85fd97A35
 2.Smart contract cho stake LP token:
 
 LP token: 0x8e1f1352336B948a37C702fc289483A975699EEe
+
 staking contract: 0x95B2c798Ca8fEe06d8c6d317A5ef54C9544614f2
 
 - Biến:
