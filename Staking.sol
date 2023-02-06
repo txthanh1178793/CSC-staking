@@ -19,6 +19,7 @@ contract StakingRewards {
     //account => portion => startTime
     mapping(address => mapping(uint256 => uint256)) public  startTimeBySlot;
     mapping(address => uint256) public startTimeForReward;
+    mapping(address => uint256) public rewardPaidByAccount;
 
     // address public treasury;
     uint256 public rewardPerTokenPerSecond;
@@ -48,10 +49,10 @@ contract StakingRewards {
     constructor(address _stakingToken) {
         owner = msg.sender;
         stakingToken = IERC20(_stakingToken);
-        apy = 3600 * 300/100;
-        lockTime = 5*3600;
+        apy = 300;
+        lockTime = 5*365*3600;
         // rewardPerTokenPerSecond = 10**stakingToken.decimals() * apy/100/;
-        limit = 300000*10**stakingToken.decimals();
+        limit = 20000*10**stakingToken.decimals();
     }
 
     modifier onlyOwner() {
@@ -76,8 +77,11 @@ contract StakingRewards {
     // }
 
     function totalReward(address _address) public view returns(uint256){
+        uint maxReward = (totalStakedByAccount[_address] * apy/100);
         uint duration = (block.timestamp - startTimeForReward[_address]);
-        return totalStakedByAccount[msg.sender]*apy/100*duration/secondPerYear;
+        uint total = totalStakedByAccount[msg.sender]*apy/100*duration/secondPerYear;
+        if ((total + rewardPaidByAccount[_address]) > maxReward) total = maxReward - rewardPaidByAccount[_address];
+        return total;
     }
 
     function claim_reward() public {
@@ -86,6 +90,7 @@ contract StakingRewards {
         startTimeForReward[msg.sender] = block.timestamp;
         require(stakingToken.transfer(msg.sender, amount), "Claim reward failed!");
         totalRewardPaid += amount;
+        rewardPaidByAccount[msg.sender] += amount;
     }
 
     function stake(uint256 amount) public{
