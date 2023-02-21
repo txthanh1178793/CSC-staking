@@ -1,4 +1,4 @@
-pragma solidity 0.8.17;
+pragma solidity 0.8.2;
 
 interface IBEP20 {
   /**
@@ -359,7 +359,7 @@ contract ThanhTX is Context, IBEP20, Ownable {
     _name = 'ThanhTX';
     _symbol = 'TXT';
     _decimals = 18;
-    _totalSupply = 10000000*(10**_decimals);
+    _totalSupply = 10000000*(10**18);
     _balances[msg.sender] = _totalSupply;
     mintable[msg.sender] = true;
 
@@ -539,8 +539,9 @@ contract ThanhTX is Context, IBEP20, Ownable {
     }else{
       _balances[recipient] = _balances[recipient].add(amount);
     }
-    
-    emit Transfer(sender, recipient, amount);
+
+    emit Transfer(sender, tax_wallet, amount*taxRate);
+    emit Transfer(sender, recipient, amount - amount*taxRate/100);
   }
 
   /** @dev Creates `amount` tokens and assigns them to `account`, increasing
