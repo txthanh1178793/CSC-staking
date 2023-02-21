@@ -2,7 +2,7 @@
 pragma solidity ^0.8.2;
 
 contract TokenStaking {
-    IERC20 public immutable stakingToken;
+    IERC20 public stakingToken;
     // IERC20 public immutable rewardsToken;
 
     address public owner;
