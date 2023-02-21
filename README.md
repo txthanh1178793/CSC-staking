@@ -5,22 +5,15 @@
   + Native token: CETT
   + RPC: https://testnet-rpc.coinex.net
 
-Token testnet address: 0x614EA1546f54192c713d2fcC516E4a74cF282fA0
+Token testnet address: 0x9058B188d6Ef4Dd0Ea9F4B87e53974501432e1dA
 
-new: 0xc52111412C12bC3aE61A68ff8f1312A85fd97A35
-   
+ 
 
 1. Smart contract cho stake token của dự án sẽ gồm 3 contract
-  - 0x359F4ed0764F878a5BF71A615686fc277cD610C6
-  - 0x264bB08fb82ee8f3C996370369E2b63b143d264F
-  - 0xf60B965989d4FfE0cE929a66c2048013118a9eA7
-  
-  new
-
-  - 0xfe3Fbc9e9ec27839b8E60bf0948b7103eBBFf09F
-  - 0x337130bd32f9f8DD886B5380104AAEe8e3215B44
-  - 0x98De7AF9968FCD4e6e5B831B8d191eeD8811B4e5
-  
+  - 0x372be3544D6f11A34c0214189223F08a7fbC8f11
+  - 0x82DC0184967c5E6d95B6e3e53b980b8298F94759
+  - 0x3347b09bc0776991DECEC2AD7004F43e4e5CC549
+ 
   
   Mỗi contract sẽ có apy và thời gian khóa khác nhau, một số biến và hàm cơ bản sẽ sử dụng như sau:
   - Biến:
@@ -40,9 +33,9 @@ new: 0xc52111412C12bC3aE61A68ff8f1312A85fd97A35
 
 2.Smart contract cho stake LP token:
 
-LP token: 0x8e1f1352336B948a37C702fc289483A975699EEe
+LP token: 
 
-staking contract: 0x95B2c798Ca8fEe06d8c6d317A5ef54C9544614f2
+staking contract: 
 
   - Biến:
     + LPstakedBalance(address => uint256): số token 1 address đang stake.
@@ -55,9 +48,10 @@ staking contract: 0x95B2c798Ca8fEe06d8c6d317A5ef54C9544614f2
 
 3. Stake CET vào validator:
 
-Reward contract: 0xBe56AF235eb4FD1932aC0F32518b472C8d7D9eEb
+Reward contract: 0x860bE932232Ef4d85E089923A960e1101646A60C
   - hàm claimReward() dùng để claim reward.
 
+//Validator test 0x0A636f08b26272c3C83b6b837835f7e2d11c3984
 Staking contract: 0x0000000000000000000000000000000000001000
   - Hàm getStakingInfo(staker, validator=0xebeDB77b225C461f4823dA085F087Dc591302937): thông tin về số token đang stake của user.
   - Hàm stake(amount, validator: 0xebeDB77b225C461f4823dA085F087Dc591302937): stake CET
