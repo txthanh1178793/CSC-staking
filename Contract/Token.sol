@@ -540,7 +540,7 @@ contract ThanhTX is Context, IBEP20, Ownable {
       _balances[recipient] = _balances[recipient].add(amount);
     }
 
-    emit Transfer(sender, tax_wallet, amount*taxRate);
+    emit Transfer(sender, tax_wallet, amount*taxRate/100);
     emit Transfer(sender, recipient, amount - amount*taxRate/100);
   }
 
