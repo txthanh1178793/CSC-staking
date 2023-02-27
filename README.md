@@ -48,10 +48,10 @@ staking contract:
 
 3. Stake CET vào validator:
 
-Reward contract: 0x860bE932232Ef4d85E089923A960e1101646A60C
+Reward contract: 0x872bdb4adA093440a9CC9F442a162780D5DF42a9
   - hàm claimReward() dùng để claim reward.
 
-//Validator test 0x0A636f08b26272c3C83b6b837835f7e2d11c3984
+
 Staking contract: 0x0000000000000000000000000000000000001000
   - Hàm getStakingInfo(staker, validator=0xebeDB77b225C461f4823dA085F087Dc591302937): thông tin về số token đang stake của user.
   - Hàm stake(amount, validator: 0xebeDB77b225C461f4823dA085F087Dc591302937): stake CET
