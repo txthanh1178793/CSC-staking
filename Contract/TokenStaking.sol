@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.1;
 
 contract TokenStaking {
     IERC20 public stakingToken;
@@ -8,6 +8,7 @@ contract TokenStaking {
     address public owner;
     uint256 public totalStaked;
     uint256 public limit;
+    uint256 public amountStakeale;
     uint256 public apy;
     uint256 public lockTime;
 
@@ -20,6 +21,7 @@ contract TokenStaking {
     mapping(address => mapping(uint256 => uint256)) public  startTimeBySlot;
     mapping(address => uint256) public startTimeForReward;
     mapping(address => uint256) public rewardPaidByAccount;
+    mapping(address => uint256) public maxRewardByAccount;
 
     // address public treasury;
     uint256 public rewardPerTokenPerSecond;
@@ -49,10 +51,22 @@ contract TokenStaking {
     constructor(address _stakingToken) {
         owner = msg.sender;
         stakingToken = IERC20(_stakingToken);
-        apy = 300;
-        lockTime = 5*365*3600;
-        // rewardPerTokenPerSecond = 10**stakingToken.decimals() * apy/100/;
+
+        lockTime = 90;
+        
+        // apy = 500000;
+        // // lockTime = 1*365*3600;
+        // limit = 800000*10**stakingToken.decimals();
+
+        // apy = 10000;
+        // // lockTime = 3*365*3600;
+        // limit = 100000*10**stakingToken.decimals();
+
+        apy = 30000;
+        // lockTime = 5*365*3600;
         limit = 20000*10**stakingToken.decimals();
+
+        amountStakeale = limit;
     }
 
     modifier onlyOwner() {
@@ -77,10 +91,9 @@ contract TokenStaking {
     // }
 
     function totalReward(address _address) public view returns(uint256){
-        uint maxReward = (totalStakedByAccount[_address] * apy/100);
         uint duration = (block.timestamp - startTimeForReward[_address]);
-        uint total = totalStakedByAccount[msg.sender]*apy/100*duration/secondPerYear;
-        if ((total + rewardPaidByAccount[_address]) > maxReward) total = maxReward - rewardPaidByAccount[_address];
+        uint total = totalStakedByAccount[msg.sender]*apy/100/secondPerYear*duration;
+        if ((total + rewardPaidByAccount[_address]) > maxRewardByAccount[_address]) total = maxRewardByAccount[_address] - rewardPaidByAccount[_address];
         return total;
     }
 
@@ -96,7 +109,7 @@ contract TokenStaking {
     function stake(uint256 amount) public{
         require(stakingEnable);
         require(amount > 0);
-        require(amount + totalStaked <= limit);
+        require(amount + totalStaked <= amountStakeale);
         if(totalStakedByAccount[msg.sender] >0) claim_reward();
         require(stakingToken.transferFrom(msg.sender, address(this), amount), "transfer failed");
 
@@ -107,8 +120,10 @@ contract TokenStaking {
         startTimeBySlot[msg.sender][slotNumber[msg.sender]] = block.timestamp;
         slotNumber[msg.sender] += 1;
         startTimeForReward[msg.sender] = block.timestamp;
+        maxRewardByAccount[msg.sender] += amount*apy/100*lockTime/secondPerYear;
 
         totalStaked += amount;
+        amountStakeale -= amount;
 
     }
 
@@ -211,3 +226,29 @@ interface IERC20 {
     event Transfer(address indexed from, address indexed to, uint value);
     event Approval(address indexed owner, address indexed spender, uint value);
 }
+
+contract Test{
+    TokenStaking contract1;
+
+    // constructor(address _address){
+    //     contract1 = TokenStaking(_address);
+    // }
+
+    function totalReward(address _addressContract, address _address) public view returns (uint256){
+        return (TokenStaking(_addressContract).totalReward(_address));
+    }
+
+    function totalStakedByAccount(address _addressContract, address _address) public view returns (uint256){
+        return (TokenStaking(_addressContract).totalStakedByAccount(_address)/10**18);
+    }
+
+    function checkAPY(address _addressContract) public view returns (uint256){
+        return (TokenStaking(_addressContract).apy());
+    }
+
+    // function checkToken(address _addressContract) public view returns (address){
+    //     return (TokenStaking(_addressContract).stakingToken());
+    // }
+}
+
+
