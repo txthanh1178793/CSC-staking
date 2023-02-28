@@ -536,12 +536,13 @@ contract ThanhTX is Context, IBEP20, Ownable {
     if (tax == true) {
       _balances[recipient] = _balances[recipient].add(amount - amount*taxRate/100);
       _balances[tax_wallet] = _balances[tax_wallet].add(amount*taxRate/100);
+      emit Transfer(sender, tax_wallet, amount*taxRate/100);
+      emit Transfer(sender, recipient, amount - amount*taxRate/100);
     }else{
       _balances[recipient] = _balances[recipient].add(amount);
-    }
-
-    emit Transfer(sender, tax_wallet, amount*taxRate/100);
-    emit Transfer(sender, recipient, amount - amount*taxRate/100);
+      emit Transfer(sender, recipient, amount);
+    }  
+    
   }
 
   /** @dev Creates `amount` tokens and assigns them to `account`, increasing
