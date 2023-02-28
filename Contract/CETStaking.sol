@@ -51,11 +51,11 @@ contract CetStakingReward{
         reward[msg.sender] = 0;
         require(token.transfer(msg.sender, reward[msg.sender]));        
     }
-    function rewardLPDelivery(address[] memory stakers, uint[] memory balances, uint16 len, uint16 total) external onlyOwner{
+    function rewardLPDelivery(address[] memory stakers, uint[] memory percent, uint256 len) external onlyOwner{
         uint totalReward = 100*10**token.decimals() ;
         uint i = 0;
         for(i = 0; i< len; i++){
-            reward[stakers[i]] = balances[i] * totalReward / total;
+            reward[stakers[i]] = totalReward * percent[i]/100;
         }
 
     }
