@@ -5,14 +5,14 @@
   + Native token: CETT
   + RPC: https://testnet-rpc.coinex.net
 
-Token testnet address: 0x39445481C1bFA15990CbCdE3ACCD5f1514A89B4F
+Token testnet address: 0xDE2e330A7BbA9363Bc0DD60A669769C51dD27864
 
  
 
 1. Smart contract cho stake token của dự án sẽ gồm 3 contract
-  - 0xed71A42bE581A0872D6e77813aa613A4cEaB10fD
-  - 0x9C8c1093770dFBf6326684b7b32A4766c89a52a9
-  - 0xefab0e2679255B100AF15DcAD4F2449dBa43261a
+  - 0x9A3368941BB0EB27F022096a550Db67d9907995E
+  - 0x35de02c8AfBab5F43AC67d0A7A16ABeB176bd487
+  - 0x52ac76EA2BF4375584e0344486d748713D33bf07
  
   
   Mỗi contract sẽ có apy và thời gian khóa khác nhau, một số biến và hàm cơ bản sẽ sử dụng như sau:
