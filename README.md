@@ -5,14 +5,14 @@
   + Native token: CETT
   + RPC: https://testnet-rpc.coinex.net
 
-Token testnet address: 0xDE2e330A7BbA9363Bc0DD60A669769C51dD27864
+Token testnet address: 0xE88c6353035EB391Ef3504901175f615742336Df
 
  
 
 1. Smart contract cho stake token của dự án sẽ gồm 3 contract
-  - 0x9A3368941BB0EB27F022096a550Db67d9907995E
-  - 0x35de02c8AfBab5F43AC67d0A7A16ABeB176bd487
-  - 0x52ac76EA2BF4375584e0344486d748713D33bf07
+  - 0x45b16861Bb762BF340C3A18F3FB38dE4ebf9bB7E
+  - 0x9f637c8466C827042d247ca64AFaB7b1A315c76A
+  - 0x204A209D77B4BE0Cba423dE3a46364966fBb1697
  
   
   Mỗi contract sẽ có apy và thời gian khóa khác nhau, một số biến và hàm cơ bản sẽ sử dụng như sau:
@@ -48,7 +48,7 @@ staking contract:
 
 3. Stake CET vào validator:
 
-Reward contract: 0x872bdb4adA093440a9CC9F442a162780D5DF42a9
+Reward contract: 0x43aCb57b32E5bD2EC96741BEd9f047c860699566
   - hàm claimReward() dùng để claim reward.
 
 
