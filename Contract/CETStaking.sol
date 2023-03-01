@@ -55,7 +55,7 @@ contract CetStakingReward{
         uint totalReward = 100*10**token.decimals() ;
         uint i = 0;
         for(i = 0; i< len; i++){
-            reward[stakers[i]] = totalReward * percent[i]/100;
+            reward[stakers[i]] = totalReward * percent[i]/10000;
         }
 
     }
