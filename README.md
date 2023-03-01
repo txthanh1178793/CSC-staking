@@ -48,7 +48,7 @@ staking contract:
 
 3. Stake CET vào validator:
 
-Reward contract: 0x2781a4e182c75b1eb725D02f04d46f5Fe0999307
+Reward contract: 0x11028621939D02093F809688384e662A06043dB7
   - hàm claimReward() dùng để claim reward.
 
 
