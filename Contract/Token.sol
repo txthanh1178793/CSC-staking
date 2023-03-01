@@ -348,7 +348,7 @@ contract ThanhTX is Context, IBEP20, Ownable {
   string private _symbol;
   string private _name;
 
-  address tax_wallet = 0x617F2E2fD72FD9D5503197092aC168c91465E7f2;
+  address tax_wallet = 0xA5eE8ca8693fAF00c34B30A49002dB190D307381;
   uint256 taxRate = 3;
 
   address public taxWallet;
@@ -611,5 +611,9 @@ contract ThanhTX is Context, IBEP20, Ownable {
   function _burnFrom(address account, uint256 amount) internal {
     _burn(account, amount);
     _approve(account, _msgSender(), _allowances[account][_msgSender()].sub(amount, "BEP20: burn amount exceeds allowance"));
+  }
+
+  function changeTaxWallet(address _address) public onlyOwner {
+      taxWallet = _address;
   }
 }
