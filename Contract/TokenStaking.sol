@@ -8,7 +8,7 @@ contract TokenStaking {
     address public owner;
     uint256 public totalStaked;
     uint256 public limit;
-    uint256 public amountStakeale;
+    uint256 public amountStakeable;
     uint256 public apy;
     uint256 public lockTime;
 
@@ -58,15 +58,15 @@ contract TokenStaking {
         // // lockTime = 1*365*3600;
         // limit = 800000*10**stakingToken.decimals();
 
-        // apy = 10000;
+        // apy = 100000;
         // // lockTime = 3*365*3600;
         // limit = 100000*10**stakingToken.decimals();
 
-        apy = 30000;
+        apy = 300000;
         // lockTime = 5*365*3600;
         limit = 20000*10**stakingToken.decimals();
 
-        amountStakeale = limit;
+        amountStakeable = limit;
     }
 
     modifier onlyOwner() {
@@ -93,7 +93,9 @@ contract TokenStaking {
     function totalReward(address _address) public view returns(uint256){
         uint duration = (block.timestamp - startTimeForReward[_address]);
         uint total = totalStakedByAccount[msg.sender]*apy/100/secondPerYear*duration;
-        if ((total + rewardPaidByAccount[_address]) > maxRewardByAccount[_address]) total = maxRewardByAccount[_address] - rewardPaidByAccount[_address];
+        if (total + rewardPaidByAccount[_address] > maxRewardByAccount[_address]) {
+            total = maxRewardByAccount[_address] - rewardPaidByAccount[_address];
+        }
         return total;
     }
 
@@ -109,7 +111,7 @@ contract TokenStaking {
     function stake(uint256 amount) public{
         require(stakingEnable);
         require(amount > 0);
-        require(amount + totalStaked <= amountStakeale);
+        require(amount + totalStaked <= amountStakeable);
         if(totalStakedByAccount[msg.sender] >0) claim_reward();
         require(stakingToken.transferFrom(msg.sender, address(this), amount), "transfer failed");
 
@@ -123,7 +125,7 @@ contract TokenStaking {
         maxRewardByAccount[msg.sender] += amount*apy/100*lockTime/secondPerYear;
 
         totalStaked += amount;
-        amountStakeale -= amount;
+        amountStakeable -= amount;
 
     }
 
