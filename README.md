@@ -33,9 +33,9 @@ Token testnet address: 0xE88c6353035EB391Ef3504901175f615742336Df
 
 2.Smart contract cho stake LP token:
 
-LP token: 
+LP token: 0xCb4ae3b77e286311Ab86c422E38D22E053ddab04
 
-staking contract: 
+staking contract: 0x9040B7798d45c83e92c9b9594Bb30af14eBd877A
 
   - Biến:
     + LPstakedBalance(address => uint256): số token 1 address đang stake.
